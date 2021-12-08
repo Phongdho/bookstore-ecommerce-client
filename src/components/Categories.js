@@ -14,7 +14,6 @@ const Categories = () => {
                     <CategoryItem item = {item} key = {item.id}/>
                 ))}
             </Container>;
-    
 };
 
 export default Categories

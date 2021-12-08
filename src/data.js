@@ -28,17 +28,20 @@ export const categories = [
     {
         id: 1,
         img: "https://i.ibb.co/GTBRqFV/frank-holleman-VEo-UWF2i-Ql-Q-unsplash.jpg",
-        title: "YOUNG FICTION"
+        title: "YOUNG FICTION",
+        cat: "literature"
     },
     {
         id: 2,
         img: "https://i.ibb.co/THvBDcf/ralph-ravi-kayden-s-QGILa-Q5n3s-unsplash.jpg",
-        title: "POP PSYCHOLOGY"
+        title: "POP PSYCHOLOGY",
+        cat: "self-help"
     },
     {
         id: 3,
         img: "https://i.ibb.co/NjTzCsW/priscilla-du-preez-MIf25phx-Nl-E-unsplash.jpg",
-        title: "MODERN SCIENCE"
+        title: "MODERN SCIENCE",
+        cat: "science"
     },
 ];
 

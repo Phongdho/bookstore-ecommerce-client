@@ -1,5 +1,6 @@
-import { NativeSelect } from '@material-ui/core';
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { useLocation, useHistory } from "react-router-dom";
+import { useParams } from "react-router";
 import styled from 'styled-components'
 import AnnouncementBar from '../components/AnnouncementBar';
 import Footer from '../components/Footer';
@@ -36,38 +37,61 @@ const Select = styled.select`
 const Option = styled.option``;
 
 export const ProductList = () => {
+
+    const params = useParams();
+    const {category} = params;
+
+    const history = useHistory();
+    const location = useLocation();
+    const cat = location.pathname.split("/")[2];
+
+    const [filters, setFilter] = useState({categories: category});
+    const [sort, setSort] = useState("newest");
+
+    const handleFilters = (e) => {
+        const value = e.target.value;
+        setFilter({
+            ...filters,
+            [e.target.name]: value
+        });
+    };
+
+    useEffect (() => {
+        history.push(`/products/${filters.categories}`)
+    }, [filters]);
+    
     return (
         <Container>
             <AnnouncementBar/>
             <Navbar/>
-            <Title>New and Popular</Title>
+            <Title>{cat.toUpperCase()} BOOKS</Title>
             <FilterContainer>
                 <Filter>
                     <FilterText>Filter Products:</FilterText>
-                    <Select>
-                        <Option disabled selected>
+                    <Select name="categories" onChange={handleFilters}>
+                        <Option disabled>
                             Categories
                         </Option>
-                        <Option>Literature</Option>
-                        <Option>Business</Option>
-                        <Option>Self-help</Option>
-                        <Option>Thriller</Option>
-                        <Option>Science</Option>
-                        <Option>Memoirs</Option>
+                        <Option>literature</Option>
+                        <Option>business</Option>
+                        <Option>self-help</Option>
+                        <Option>thriller</Option>
+                        <Option>science</Option>
+                        <Option>memoirs</Option>
                     </Select>
                 </Filter>
                 <Filter>
                     <FilterText>Sort Products:</FilterText>
-                    <Select>
-                        <Option selected>
+                    <Select onChange={e=> setSort(e.target.value)}>
+                        <Option value="newest">
                             Newest
                         </Option>
-                        <Option>Price (asc)</Option>
-                        <Option>Price (desc)</Option>
+                        <Option value="asc">Price (asc)</Option>
+                        <Option value="desc">Price (desc)</Option>
                     </Select>
                 </Filter>
             </FilterContainer>
-            <Products/>
+            <Products cat={cat} filters={filters} sort={sort}/>
             <Footer/>
         </Container>
     )
