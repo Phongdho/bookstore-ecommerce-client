@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display: flex;
+    background-color: #f8f9fa;
 `;
 
 const Left = styled.div`
@@ -94,8 +95,10 @@ const Footer = () => {
                 <List>
                     <ListItem>Home</ListItem>
                     <ListItem>My Account</ListItem>
-                    <ListItem>Cart</ListItem>
                     <ListItem>Books</ListItem>
+                    <ListItem>Categories</ListItem>
+                    <ListItem>Cart</ListItem>
+                    <ListItem>Wishlist</ListItem>
                 </List>
             </Center>
             <Right>
