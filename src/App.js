@@ -8,10 +8,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Redirect
 } from "react-router-dom";
+import CartPage from './pages/CartPage';
+import {useSelector} from "react-redux";
 
 function App() {
+
+  const user = useSelector ((state) => state.user.currentUser);
   return (
     <Router>
       <Switch>
@@ -27,8 +31,9 @@ function App() {
         <Route path="/register">
           <RegisterPage/>
         </Route>
-        <Route path="/login">
-          <LoginPage/>
+        <Route path="/login">{user ? <Redirect to="/" /> : <LoginPage />}</Route>
+        <Route path="/cart">
+          <CartPage/>
         </Route>
       </Switch>
     </Router>

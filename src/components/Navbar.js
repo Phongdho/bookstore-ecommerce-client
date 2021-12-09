@@ -1,5 +1,6 @@
 import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { Badge } from '@material-ui/core';
 
@@ -36,6 +37,8 @@ const Center = styled.div`
 const Logo = styled.h1`
     font-weight: bold;
     text-align: center;
+    color: black;
+    text-decoration: none !important;
 `
 
 const Right = styled.div`
@@ -63,7 +66,7 @@ const Navbar = () => {
                     </SearchContainer>
                 </Left>
                 <Center>
-                    <Logo>domdom</Logo>
+                    <Link to="/"><Logo>domdom</Logo></Link>
                 </Center>
                 <Right>
                     <MenuItem>REGISTER</MenuItem>

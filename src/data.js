@@ -42,6 +42,7 @@ export const categories = [
         img: "https://i.ibb.co/NjTzCsW/priscilla-du-preez-MIf25phx-Nl-E-unsplash.jpg",
         title: "MODERN SCIENCE",
         cat: "science"
+
     },
 ];
 

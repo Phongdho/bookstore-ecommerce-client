@@ -1,10 +1,11 @@
 import { Add, Remove } from '@material-ui/icons';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import AnnouncementBar from '../components/AnnouncementBar';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-
+import { useLocation } from 'react-router';
+import { publicRequest } from '../apiService';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -68,18 +69,36 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    console.log("id is", id);
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get("/products/find/" + id);
+                console.log("data is", res);
+                setProduct(res.data);
+            } catch (err) {}
+        };
+        getProduct();
+    }, [id]);
+    
     return (
         <Container>
             <AnnouncementBar/>
             <Navbar/>
             <Wrapper>
                 <ImgContainer>
-                    <Image src="https://images3.penguinrandomhouse.com/cover/9780593083758"/>
+                    <Image src={product.img}/>
                 </ImgContainer>
                 <InfoContainer>
-                    <Title>How to Change</Title>
-                    <Desc>Award-winning Wharton Professor and Choiceology podcast host Katy Milkman has devoted her career to the study of behavior change. In this ground-breaking book, Milkman reveals a proven path that can take you from where you are to where you want to be, with a foreword from psychologist Angela Duckworth, the best-selling author of Grit.</Desc>
-                    <Price>$20</Price>
+                    <Title>{product.title}</Title>
+                    <Desc><strong>{product.highlight}</strong></Desc>
+                    <Desc>{product.desc}</Desc>
+                    <Price>VND {(product.price * 1000).toLocaleString()}</Price>
                     <AddContainer>
                     <AmountContainer>
                         <Remove/>

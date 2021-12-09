@@ -1,5 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
+import { register } from '../redux/apiFetch';
+import {useDispatch} from "react-redux";
+import {useHistory} from 'react-router-dom';
 
 const Container = styled.div`
     width: 100vw;
@@ -47,21 +50,34 @@ const Button = styled.button`
 `;
 
 const RegisterPage = () => {
+
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        register(dispatch, {username, email, password});
+        history.push('/login');
+    }
     return (
         <Container>
             <Wrapper>
                 <Title>Sign up with us</Title>
                 <Form>
-                    <Input placeholder="name"/>
-                    <Input placeholder="last name"/>
-                    <Input placeholder="username"/>
-                    <Input placeholder="email"/>
-                    <Input placeholder="password"/>
-                    <Input placeholder="confirm password"/>
+                    {/* <Input placeholder="name"/>
+                    <Input placeholder="last name"/> */}
+                    <Input placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
+                    <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                    <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+                    {/* <Input placeholder="confirm password"/> */}
                     <Agreement>
                         We never share you personal information with any third parties
                     </Agreement>
-                    <Button>Register</Button>
+                    <Button onClick={handleClick}>Register</Button>
                 </Form>
             </Wrapper>
         </Container>

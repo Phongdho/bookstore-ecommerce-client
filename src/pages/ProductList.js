@@ -13,7 +13,9 @@ const Container = styled.div`
 `;
 const Title = styled.h1`
     margin: 20px;
-
+    text-align: center;
+    font-weight: 300;
+    font-size: 40px;
 `;
 const FilterContainer = styled.div`
     display: flex;
@@ -59,7 +61,7 @@ export const ProductList = () => {
     useEffect (() => {
         history.push(`/products/${filters.categories}`)
     }, [filters]);
-    
+
     return (
         <Container>
             <AnnouncementBar/>
@@ -83,9 +85,7 @@ export const ProductList = () => {
                 <Filter>
                     <FilterText>Sort Products:</FilterText>
                     <Select onChange={e=> setSort(e.target.value)}>
-                        <Option value="newest">
-                            Newest
-                        </Option>
+                        <Option value="newest">Newest</Option>
                         <Option value="asc">Price (asc)</Option>
                         <Option value="desc">Price (desc)</Option>
                     </Select>
