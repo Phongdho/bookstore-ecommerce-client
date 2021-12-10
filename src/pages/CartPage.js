@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import AnnouncementBar from '../components/AnnouncementBar'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import {useSelector} from 'react-redux';
 
 const Container = styled.div``;
 const Wrapper= styled.div`
@@ -19,7 +20,6 @@ const Top = styled.div`
     justify-content: space-between;
     padding: 20px;
 `;
-
 const TopButton = styled.button`
     padding: 10px;
     font-weight: 600;
@@ -28,9 +28,7 @@ const TopButton = styled.button`
     background-color: ${props => props.type === "filled" ? "black" : "transparent"};
     color: ${props => props.type === "filled" && "white"};
 `;
-
 const TopTexts = styled.div``
-
 const TopText = styled.span`
     cursor: pointer;
     text-decoration: underline;
@@ -43,7 +41,6 @@ const Bottom = styled.div`
 const Info = styled.div`
     flex: 3;
 `;
-
 const Product = styled.div`
     display: flex;
     justify-content: space-between;
@@ -65,9 +62,7 @@ const Details = styled.div`
 const ProductName = styled.span`
     text-transform: uppercase;
 `
-
 const ProductId = styled.span``
-
 const PriceDetail = styled.div`
     flex: 1;
     display: flex;
@@ -75,7 +70,6 @@ const PriceDetail = styled.div`
     justify-content: center;
     flex-direction: column;
 `;
-
 const ProductAmountContainer = styled.div`
     display: flex;
     align-items: center;
@@ -101,7 +95,6 @@ const Summary = styled.div`
     padding: 20px;
     height: 50vh;
 `
-
 const SummaryTitle = styled.h1`
     font-weight: 200;
 `
@@ -124,6 +117,8 @@ const Button = styled.button`
 `
 
 const CartPage = () => {
+    const cart = useSelector(state => state.cart);
+
     return (
         <Container>
             <AnnouncementBar/>
@@ -140,7 +135,7 @@ const CartPage = () => {
                 </Top>
                 <Bottom>
                     <Info>
-                        <Product>
+                        {cart.products.map(product => (<Product>
                             <ProductDetail>
                                 <Image src="https://images4.penguinrandomhouse.com/cover/9780593465066"/>
                                 <Details>
@@ -156,25 +151,9 @@ const CartPage = () => {
                                 </ProductAmountContainer>
                                 <ProductPrice>$ 30</ProductPrice>
                             </PriceDetail>
-                        </Product>
+                        </Product>))}
                         <Hr />
-                        <Product>
-                            <ProductDetail>
-                                <Image src="https://images4.penguinrandomhouse.com/cover/9780593465066"/>
-                                <Details>
-                                    <ProductName><strong>Title:</strong> Call Us What We Carry</ProductName>
-                                    <ProductId><strong>BOOKID:</strong> 938459374873847</ProductId>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice>$ 30</ProductPrice>
-                            </PriceDetail>
-                        </Product>
+                        
                     </Info>
                     <Summary>
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>

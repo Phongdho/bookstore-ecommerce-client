@@ -6,6 +6,8 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { useLocation } from 'react-router';
 import { publicRequest } from '../apiService';
+import {addProduct} from "../redux/cartRedux";
+import {useDispatch} from 'react-redux';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -72,20 +74,33 @@ const Product = () => {
 
     const location = useLocation();
     const id = location.pathname.split("/")[2];
-    console.log("id is", id);
     const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(1);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getProduct = async () => {
             try {
                 const res = await publicRequest.get("/products/find/" + id);
-                console.log("data is", res);
+                // console.log("data is", res);
                 setProduct(res.data);
             } catch (err) {}
         };
         getProduct();
     }, [id]);
+
+    const handleQuantity = (type) => {
+        if (type === "minus") {
+            quantity > 1 && setQuantity(quantity - 1);
+        } else {
+            setQuantity(quantity + 1);
+        }
+    };
     
+    const handleClick = () => {
+        dispatch(addProduct({...product, quantity}));
+    }
+
     return (
         <Container>
             <AnnouncementBar/>
@@ -100,12 +115,12 @@ const Product = () => {
                     <Desc>{product.desc}</Desc>
                     <Price>VND {(product.price * 1000).toLocaleString()}</Price>
                     <AddContainer>
-                    <AmountContainer>
-                        <Remove/>
-                        <Amount>1</Amount>
-                        <Add/>
-                        <Button>ADD TO CART</Button>
-                    </AmountContainer>
+                        <AmountContainer>
+                            <Remove onClick={()=>handleQuantity("minus")} style={{cursor:"pointer"}}/>
+                            <Amount>{quantity}</Amount>
+                            <Add onClick={()=>handleQuantity("plus")} style={{cursor:"pointer"}}/>
+                        </AmountContainer>
+                        <Button onClick={handleClick}>ADD TO CART</Button>
                     </AddContainer>
                 </InfoContainer>
             </Wrapper>

@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { Badge } from '@material-ui/core';
+import {useSelector} from 'react-redux';
 
 const Container = styled.div`
     height: 60px;
@@ -56,6 +57,9 @@ const MenuItem = styled.div`
 `
 
 const Navbar = () => {
+
+    const quantity = useSelector(state => state.cart.quantity);
+
     return (
         <Container>
             <Wrapper>
@@ -69,13 +73,19 @@ const Navbar = () => {
                     <Link to="/"><Logo>domdom</Logo></Link>
                 </Center>
                 <Right>
+                    <Link to="/register">
                     <MenuItem>REGISTER</MenuItem>
+                    </Link>
+                    <Link to="/login">
                     <MenuItem>SIGN IN</MenuItem>
+                    </Link>
+                    <Link to="/cart">
                     <MenuItem>
-                        <Badge badgeContent={4} color="primary">
+                        <Badge badgeContent={quantity} color="primary">
                         <ShoppingCartOutlined />
                         </Badge>
                     </MenuItem>
+                    </Link>
                 </Right>
             </Wrapper>
         </Container>
