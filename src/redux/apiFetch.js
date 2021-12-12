@@ -1,17 +1,15 @@
 import { loginFailure, loginStart, loginSuccess, registerSuccess } from "./userRedux"
-import {publicRequest} from "../apiService";
-
+import { addProduct } from "./cartRedux"; 
+import {publicRequest, userRequest} from "../apiService";
 
 export const register = async (dispatch, user) => {
     // dispatch(registerStart());
     try {
-        // console.log("user nè", user);
         const res = await publicRequest.post("/auth/register", user);
         // console.log("res nè", res);
         dispatch(registerSuccess(res.data));
     } catch (err) {
         console.log("Register error", err);
-        // dispatch(registerFailure());
     }
 }
 export const login = async (dispatch, user) => {
@@ -23,3 +21,8 @@ export const login = async (dispatch, user) => {
         dispatch(loginFailure())
     }
 };
+
+
+
+
+

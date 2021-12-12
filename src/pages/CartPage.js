@@ -1,10 +1,15 @@
 import { Add, Remove } from '@material-ui/icons'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import AnnouncementBar from '../components/AnnouncementBar'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import {useSelector} from 'react-redux';
+import StripeCheckout from "react-stripe-checkout";
+import { userRequest } from "../apiService";
+import { useHistory } from "react-router-dom";
+
+const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
 const Wrapper= styled.div`
@@ -117,7 +122,29 @@ const Button = styled.button`
 `
 
 const CartPage = () => {
+
     const cart = useSelector(state => state.cart);
+    const [stripeToken, setStripeToken] = useState(null);
+    const history = useHistory();
+
+    const onToken = (token) => {
+        setStripeToken(token);
+    };
+
+    useEffect(() => {
+        const makeRequest = async () => {
+          try {
+            const res = await userRequest.post("/checkout/payment", {
+              tokenId: stripeToken.id,
+              amount: cart.total * 100 * 0.9,
+            });
+            history.push("/success", {
+                stripeData: res.data,
+                products: cart });
+          } catch {}
+        };
+        stripeToken && makeRequest();
+    }, [stripeToken, cart.total * 0.9, history]);
 
     return (
         <Container>
@@ -137,43 +164,54 @@ const CartPage = () => {
                     <Info>
                         {cart.products.map(product => (<Product>
                             <ProductDetail>
-                                <Image src="https://images4.penguinrandomhouse.com/cover/9780593465066"/>
+                                <Image src={product.img}/>
                                 <Details>
-                                    <ProductName><strong>Title:</strong> Call Us What We Carry</ProductName>
-                                    <ProductId><strong>BOOKID:</strong> 938459374873847</ProductId>
+                                    <ProductName><strong>Title:</strong> {product.title}</ProductName>
+                                    <ProductId><strong>BOOKID:</strong> {product._id}</ProductId>
                                 </Details>
                             </ProductDetail>
                             <PriceDetail>
                                 <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove />
+                                    <Remove style={{cursor:"pointer"}}/>
+                                    <ProductAmount>{product.quantity}</ProductAmount>
+                                    <Add style={{cursor:"pointer"}}/>
                                 </ProductAmountContainer>
-                                <ProductPrice>$ 30</ProductPrice>
+                                <ProductPrice>VND {(product.price * product.quantity * 1000).toLocaleString()}</ProductPrice>
                             </PriceDetail>
-                        </Product>))}
-                        <Hr />
-                        
+                            <Hr />
+                        </Product>
+                        ))}
                     </Info>
                     <Summary>
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>$ 80</SummaryItemPrice>
+                            <SummaryItemPrice>VND {(cart.total).toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
-                            <SummaryItemText>Estimated Shipping</SummaryItemText>
-                            <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+                            <SummaryItemText>Standard Shipping</SummaryItemText>
+                            <SummaryItemPrice>VND +{(cart.total * 0.05).toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
-                            <SummaryItemText>Shipping Discount</SummaryItemText>
-                            <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+                            <SummaryItemText>Our 15% Discount</SummaryItemText>
+                            <SummaryItemPrice>VND -{(cart.total * 0.15).toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>$ 80</SummaryItemPrice>
+                            <SummaryItemPrice>VND {(cart.total * 0.90).toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>CHECK OUT NOW</Button>
+                        <StripeCheckout
+                            name="domdom's bookstore"
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxbaavdT8XbfZqUycEtXo2wDRF4J6l8Arytw&usqp=CAU"
+                            billingAddress
+                            shippingAddress
+                            description={`Your total is VND ${(cart.total * 0.90).toLocaleString()}`}
+                            amount={cart.total * 100 * 0.9}
+                            token={onToken}
+                            stripeKey={KEY}
+                            >
+                            <Button>CHECKOUT NOW</Button>
+                            </StripeCheckout>
                     </Summary>
 
                 </Bottom>

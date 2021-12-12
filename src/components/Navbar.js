@@ -39,7 +39,6 @@ const Logo = styled.h1`
     font-weight: bold;
     text-align: center;
     color: black;
-    text-decoration: none !important;
 `
 
 const Right = styled.div`
@@ -70,16 +69,16 @@ const Navbar = () => {
                     </SearchContainer>
                 </Left>
                 <Center>
-                    <Link to="/"><Logo>domdom</Logo></Link>
+                    <Link to="/" style={{textDecoration:"none"}}><Logo>domdom</Logo></Link>
                 </Center>
                 <Right>
-                    <Link to="/register">
+                    <Link to="/register" style={{textDecoration:"none", color: "black"}}>
                     <MenuItem>REGISTER</MenuItem>
                     </Link>
-                    <Link to="/login">
+                    <Link to="/login" style={{textDecoration:"none", color:"black"}}>
                     <MenuItem>SIGN IN</MenuItem>
                     </Link>
-                    <Link to="/cart">
+                    <Link to="/cart" style={{textDecoration:"none", color:"black"}}>
                     <MenuItem>
                         <Badge badgeContent={quantity} color="primary">
                         <ShoppingCartOutlined />

@@ -9,6 +9,7 @@ import { publicRequest } from '../apiService';
 import {addProduct} from "../redux/cartRedux";
 import {useDispatch} from 'react-redux';
 
+
 const Container = styled.div``;
 const Wrapper = styled.div`
     padding: 50px;
@@ -98,8 +99,9 @@ const Product = () => {
     };
     
     const handleClick = () => {
-        dispatch(addProduct({...product, quantity}));
-    }
+        dispatch(addProduct({...product, quantity})
+        );
+    };
 
     return (
         <Container>
