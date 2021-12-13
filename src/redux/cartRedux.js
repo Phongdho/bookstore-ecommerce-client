@@ -15,7 +15,7 @@ const cartSlice = createSlice ({
         },
         // removeProduct: (state, action) => {
         //     state.quantity -= 1
-        //     state.products = state.products.filter(item => item._id !== action.payload._id || item.productSize !== action.payload.productSize)
+        //     state.products = state.products.filter(item => item._id !== action.payload._id)
         //     state.total -= action.payload.productPrice *action.payload.quantity
             
         // },
@@ -24,12 +24,21 @@ const cartSlice = createSlice ({
             state.products = []
             state.total = 0
         },
-        // remQuant: (state, action) => {
-        //     state.products = state.products.map(item => (item._id === action.payload._id && item.productSize === action.payload.productSize) ? {...item, quantity: item.quantity -= 1} : {...item})
-        //     state.total -= action.payload.productPrice
-        // }
+        remQuant: (state, action) => {
+            state.products = state.products.map(item => (item._id === action.payload._id) ? {...item, quantity: item.quantity -= 1} : {...item})
+            state.total = state.products.map((item) => {
+                return item.quantity * item.price * 1000
+            }).reduce((sum, quantity) => sum + quantity)
+        },
+        addQuant: (state, action) => {
+            state.products = state.products.map(item => (item._id === action.payload._id) ? {...item, quantity: item.quantity += 1} : {...item})
+            state.total = state.products.map((item) => {
+                return item.quantity * item.price * 1000
+            }).reduce((sum, quantity) => sum + quantity)
+        },
     }
 });
 
-export const {addProduct, resetCart} = cartSlice.actions
+export const {addProduct, resetCart, remQuant, addQuant} = cartSlice.actions
 export default cartSlice.reducer;
+

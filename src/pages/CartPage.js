@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import AnnouncementBar from '../components/AnnouncementBar'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {remQuant, addQuant} from "../redux/cartRedux";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../apiService";
 import { useHistory } from "react-router-dom";
@@ -126,6 +127,7 @@ const CartPage = () => {
     const cart = useSelector(state => state.cart);
     const [stripeToken, setStripeToken] = useState(null);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const onToken = (token) => {
         setStripeToken(token);
@@ -145,6 +147,14 @@ const CartPage = () => {
         };
         stripeToken && makeRequest();
     }, [stripeToken, cart.total * 0.9, history]);
+
+    const handleQuantity = (type, product) => {
+        if (type === 'desc') {
+            product.quantity > 1 && dispatch(remQuant(product))
+        } else {
+            dispatch(addQuant(product))
+        }
+    };
 
     return (
         <Container>
@@ -172,9 +182,9 @@ const CartPage = () => {
                             </ProductDetail>
                             <PriceDetail>
                                 <ProductAmountContainer>
-                                    <Remove style={{cursor:"pointer"}}/>
+                                    <Remove style={{cursor:"pointer"}} onClick={() => handleQuantity('desc', product)}/>
                                     <ProductAmount>{product.quantity}</ProductAmount>
-                                    <Add style={{cursor:"pointer"}}/>
+                                    <Add style={{cursor:"pointer"}} onClick={() => handleQuantity('inc', product)}/>
                                 </ProductAmountContainer>
                                 <ProductPrice>VND {(product.price * product.quantity * 1000).toLocaleString()}</ProductPrice>
                             </PriceDetail>
@@ -186,7 +196,7 @@ const CartPage = () => {
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>VND {(cart.total).toLocaleString()}</SummaryItemPrice>
+                            <SummaryItemPrice>VND {(cart.total)?.toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Standard Shipping</SummaryItemText>

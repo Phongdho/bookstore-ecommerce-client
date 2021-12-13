@@ -37,7 +37,6 @@ const Price = styled.span`
     font-weight: 200;
     font-size: 40px;
 `;
-
 const AddContainer = styled.div`
     width: 50%;
     display: flex;
