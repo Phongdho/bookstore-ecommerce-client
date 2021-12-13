@@ -13,14 +13,14 @@ const Status = () => {
     const [orderId, setOrderId] = useState(null);
 
 
-    const token = currentUser.accessToken;
+    // const token = currentUser.accessToken;
     const dispatch = useDispatch();
 
     useEffect(() => {
         const createOrder = async () => {
           try {
             const res = await userRequest.post("/orders", {
-              token,
+              // token,
               userId: currentUser._id,
               products: cart.products.map((item) => ({
                 productId: item._id,

@@ -11,7 +11,7 @@ const cartSlice = createSlice ({
         addProduct: (state, action) => {
             state.quantity += 1;
             state.products.push(action.payload);
-            state.total += action.payload.price * action.payload.quantity * 1000;
+            state.total += action.payload.price * action.payload.quantity;
         },
         // removeProduct: (state, action) => {
         //     state.quantity -= 1
@@ -27,13 +27,13 @@ const cartSlice = createSlice ({
         remQuant: (state, action) => {
             state.products = state.products.map(item => (item._id === action.payload._id) ? {...item, quantity: item.quantity -= 1} : {...item})
             state.total = state.products.map((item) => {
-                return item.quantity * item.price * 1000
+                return item.quantity * item.price
             }).reduce((sum, quantity) => sum + quantity)
         },
         addQuant: (state, action) => {
             state.products = state.products.map(item => (item._id === action.payload._id) ? {...item, quantity: item.quantity += 1} : {...item})
             state.total = state.products.map((item) => {
-                return item.quantity * item.price * 1000
+                return item.quantity * item.price
             }).reduce((sum, quantity) => sum + quantity)
         },
     }

@@ -186,7 +186,7 @@ const CartPage = () => {
                                     <ProductAmount>{product.quantity}</ProductAmount>
                                     <Add style={{cursor:"pointer"}} onClick={() => handleQuantity('inc', product)}/>
                                 </ProductAmountContainer>
-                                <ProductPrice>VND {(product.price * product.quantity * 1000).toLocaleString()}</ProductPrice>
+                                <ProductPrice>USD {(product.price * product.quantity).toLocaleString()}</ProductPrice>
                             </PriceDetail>
                             <Hr />
                         </Product>
@@ -196,26 +196,26 @@ const CartPage = () => {
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>VND {(cart.total)?.toLocaleString()}</SummaryItemPrice>
+                            <SummaryItemPrice>USD {(cart.total)?.toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Standard Shipping</SummaryItemText>
-                            <SummaryItemPrice>VND +{(cart.total * 0.05).toLocaleString()}</SummaryItemPrice>
+                            <SummaryItemPrice>USD +{(cart.total * 0.05).toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Our 15% Discount</SummaryItemText>
-                            <SummaryItemPrice>VND -{(cart.total * 0.15).toLocaleString()}</SummaryItemPrice>
+                            <SummaryItemPrice>USD -{(cart.total * 0.15).toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>VND {(cart.total * 0.90).toLocaleString()}</SummaryItemPrice>
+                            <SummaryItemPrice>USD {(cart.total * 0.90).toLocaleString()}</SummaryItemPrice>
                         </SummaryItem>
                         <StripeCheckout
                             name="domdom's bookstore"
                             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxbaavdT8XbfZqUycEtXo2wDRF4J6l8Arytw&usqp=CAU"
                             billingAddress
                             shippingAddress
-                            description={`Your total is VND ${(cart.total * 0.90).toLocaleString()}`}
+                            description={`Your total is USD ${(cart.total * 0.90).toLocaleString()}`}
                             amount={cart.total * 100 * 0.9}
                             token={onToken}
                             stripeKey={KEY}

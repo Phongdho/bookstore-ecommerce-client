@@ -114,7 +114,7 @@ const Product = () => {
                     <Title>{product.title}</Title>
                     <Desc><strong>{product.highlight}</strong></Desc>
                     <Desc>{product.desc}</Desc>
-                    <Price>VND {(product.price * 1000).toLocaleString()}</Price>
+                    <Price>USD {(product.price * 1).toLocaleString()}</Price>
                     <AddContainer>
                         <AmountContainer>
                             <Remove onClick={()=>handleQuantity("minus")} style={{cursor:"pointer"}}/>
