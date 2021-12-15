@@ -25,11 +25,11 @@ export const SearchPage = () => {
 
     return (
         <Container>
-            <AnnouncementBar/>
+            {/* <AnnouncementBar/> */}
             <Navbar/>
             <Title>Your Search Result:</Title>
             {
-                searchProduct && searchProduct.map((e, index) => {                 
+                searchProduct && searchProduct?.map((e, index) => {                 
                 return  <ProductItem item={e} key={index}/>
                 })
             }

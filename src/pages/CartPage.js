@@ -162,7 +162,7 @@ const CartPage = () => {
 
     return (
         <Container>
-            <AnnouncementBar/>
+            {/* <AnnouncementBar/> */}
             <Navbar/>
             <Wrapper>
                 <Title>YOUR BAG</Title>

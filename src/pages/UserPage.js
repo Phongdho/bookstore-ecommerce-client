@@ -21,7 +21,7 @@ const Title = styled.h1`
 const UserPage = () => {
 
     const currentUser = useSelector((state) => state.user.currentUser);
-    // console.log(currentUser);
+    console.log(currentUser._id);
     const [order, setOrder] = useState([]);
     // const dispatch = useDispatch();
 
@@ -36,7 +36,7 @@ const UserPage = () => {
         };
         getOrders();
     }, []);
-    // console.log("all", order);
+    console.log("all", order);
     const columns = [
         { field: "_id", headerName: "Order ID", width: 250 },
         {
@@ -74,7 +74,7 @@ const UserPage = () => {
 
     return (
         <Container>
-            <AnnouncementBar/>
+            {/* <AnnouncementBar/> */}
             <Navbar/>
             <Title>{currentUser?.username}'s Order</Title>
             <div style={{height: "50vh"}}>

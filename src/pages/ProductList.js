@@ -9,7 +9,7 @@ import Products from '../components/Products';
 
 
 const Container = styled.div`
-
+    // background-color: #f8edeb;
 `;
 const Title = styled.h1`
     margin: 20px;
@@ -64,7 +64,7 @@ export const ProductList = () => {
 
     return (
         <Container>
-            <AnnouncementBar/>
+            {/* <AnnouncementBar/> */}
             <Navbar/>
             <Title>{cat.toUpperCase()} BOOKS</Title>
             <FilterContainer>

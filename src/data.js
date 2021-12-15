@@ -2,24 +2,27 @@
 export const sliderItems = [
     {
         id: 1,
-        img: "https://i.ibb.co/p2Vt34K/photo-1592419309827-96e9508717e0.jpg",
-        title: "Merry Book Christmas",
-        desc: "'A book must be the axe for the frozen sea within us' - Franz Kafka",
-        bg: "fff1e6",
+        img: "https://i.ibb.co/8PvYJVC/9781529110685.jpg",
+        title: "On Earth We're Briefly Gorgeous",
+        desc: "'They say nothing lasts forever but they're just scared it will last longer than they can love it.' - Ocean Vuong",
+        bg: "https://i.ibb.co/3C45MSC/image-from-rawpixel-id-2541676-jpeg.jpg",
+        bookId: "61b8586769fb87c57e784ecc",
     },
     {
         id: 2,
-        img: "https://i.ibb.co/Mh3QSHq/john-mark-smith-P6uqp-Ny-Xc-I4-unsplash.jpg",
-        title: "Merry Book Christmas",
-        desc: "'A book must be the axe for the frozen sea within us' - Franz Kafka",
-        bg: "f8edeb",
+        img: "https://images-na.ssl-images-amazon.com/images/I/81pA6-hv+2L.jpg",
+        title: "The Institute",
+        desc: "'Monsters are real... and sometimes, they win.' - Stephen King",
+        bg: "https://i.ibb.co/YDJY5q6/image-from-rawpixel-id-4063156-jpeg.jpg",
+        bookId: "61adb9ff30b00aed28989133",
     },
     {
         id: 3,
-        img: "https://i.ibb.co/F0Gjh4j/koala-P0-Nu-BF6n-A7-A-unsplash.jpg",
-        title: "Merry Book Christmas",
-        desc: "'A book must be the axe for the frozen sea within us' - Franz Kafka",
-        bg: "ffe3e0",
+        img: "https://m.media-amazon.com/images/I/81pX3p3bS7L.jpg",
+        title: "Think Again",
+        desc: "'We live in a rapidly changing world, where we need to spend as much time rethinking as we do thinking.' - Adam Grant",
+        bg: "https://i.ibb.co/p3Hjm2R/Image-from-rawpixel-id-3112764-jpeg.jpg",
+        bookId: "61ad8ce330b00aed2898911f",
     },
 ]
 
@@ -27,19 +30,19 @@ export const sliderItems = [
 export const categories = [
     {
         id: 1,
-        img: "https://i.ibb.co/GTBRqFV/frank-holleman-VEo-UWF2i-Ql-Q-unsplash.jpg",
+        img: "https://i.ibb.co/DtsyM60/Image-from-rawpixel-id-3973724-jpeg.jpg",
         title: "YOUNG FICTION",
         cat: "literature"
     },
     {
         id: 2,
-        img: "https://i.ibb.co/THvBDcf/ralph-ravi-kayden-s-QGILa-Q5n3s-unsplash.jpg",
+        img: "https://i.ibb.co/r7Jmywm/Image-from-rawpixel-id-2865936-jpeg.jpg",
         title: "POP PSYCHOLOGY",
         cat: "self-help"
     },
     {
         id: 3,
-        img: "https://i.ibb.co/NjTzCsW/priscilla-du-preez-MIf25phx-Nl-E-unsplash.jpg",
+        img: "https://i.ibb.co/KqBcQxc/Image-from-rawpixel-id-3973696-jpeg.jpg",
         title: "MODERN SCIENCE",
         cat: "science"
 

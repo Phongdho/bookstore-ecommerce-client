@@ -12,8 +12,9 @@ const Image = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.9;
+    opacity: 0.95;
     filter: blur(1px);
+    border-radius: 20px;
 `;
 const Info = styled.div`
     position: absolute;
@@ -38,6 +39,10 @@ const Button = styled.button`
     color: gray;
     cursor: pointer;
     z-index: 2;
+    &:hover {
+        background-color: #aed9e0;
+        color: #fffffc;
+    }
 `;
 
 export const CategoryItem = ({item}) => {

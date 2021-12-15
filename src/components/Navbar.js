@@ -1,16 +1,19 @@
-import { ShoppingCartOutlined } from '@material-ui/icons';
+import { Search, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
 import React, {useState, useEffect} from 'react'
 import {FormControl, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { Badge } from '@material-ui/core';
+import {mobile} from "../responsive";
 import {useSelector, useDispatch} from 'react-redux';
 import axios from "axios";
 import { resetUser } from '../redux/userRedux';
 
 const Container = styled.div`
     height: 60px;
+    ${mobile({ height: "50px" })}
+    background-color: #f8edeb;
 `;
 
 const Wrapper = styled.div`
@@ -18,10 +21,21 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    ${mobile({ padding: "10px 0px" })}
 `;
 
 const Left = styled.div`
-    flex: 1;    
+    flex: 1;
+    display: flex;
+    align-items: center;    
+`;
+
+const SearchContainer = styled.div`
+  border: 0.5px solid lightgray;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  padding: 5px;
 `;
 
 const Center = styled.div`
@@ -32,6 +46,7 @@ const Logo = styled.h1`
     font-weight: bold;
     text-align: center;
     color: black;
+    ${mobile({ fontSize: "24px" })}
 `
 
 const Right = styled.div`
@@ -39,13 +54,14 @@ const Right = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
+    ${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
 const MenuItem = styled.div`
     font-size: 14px;
     cursor: pointer;
     margin-left: 25px;
+    ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `
 
 const Navbar = () => {
@@ -80,6 +96,7 @@ const Navbar = () => {
         <Container>
             <Wrapper>
                 <Left>
+                    <SearchContainer>
                     <Form className="d-flex" onSubmit={handleSubmit}>
                         <FormControl
                         type="search"
@@ -87,10 +104,11 @@ const Navbar = () => {
                         className="me-2"
                         aria-label="Search"
                         onChange={handleSearchChange}
-                        style={{backgroundColor:"lightgrey"}}
+                        style={{marginRight: "10px", border:"none", borderRadius:"3px", backgroundColor:"transparent"}}
                         />
-                        <Button onClick={handleSubmit} variant="outline-secondary">Search</Button>
+                        <Search onClick={handleSubmit} style={{ color: "gray", fontSize: 16 }}/>
                     </Form>
+                    </SearchContainer>
                 </Left>
                 <Center>
                     <Link to="/" style={{textDecoration:"none"}}><Logo>domdom</Logo></Link>

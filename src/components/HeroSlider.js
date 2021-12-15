@@ -2,6 +2,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
 import React, {useState} from 'react'
 import styled from 'styled-components';
 import { sliderItems } from '../data';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     width: 100%;
@@ -42,7 +43,7 @@ const Slide = styled.div`
     height: 100vh;
     display: flex;
     align-items: center;
-    background-color: #${props => props.bg}
+    background-image: url(${props => props.bg})
 `;
 
 const ImgContainer = styled.div`
@@ -54,8 +55,8 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-    height: 60%;
-    border-radius: 20px;
+    height: 60vh;
+    border-radius: 3px;
 `;
 
 const InfoContainer = styled.div`
@@ -76,9 +77,10 @@ const Desc = styled.p`
 `;
 
 const Button = styled.button`
-    padding: 10px;
+    padding: 5px 10px;
     background-color: transparent;
     cursor: pointer;
+    border-radius: 5px;
 `;
 
 const HeroSlider = () => {
@@ -101,12 +103,14 @@ const HeroSlider = () => {
                 {sliderItems.map((item) => (
                     <Slide bg={item.bg} key={item.id}>
                         <ImgContainer>
-                            <Image src={item.img} />
+                            <Image src={item.img} style={{boxShadow:"rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"}}/>
                         </ImgContainer>
                         <InfoContainer>
                             <Title>{item.title}</Title>
                             <Desc>{item.desc}</Desc>
+                            <Link to={`/product/${item.bookId}`} style={{textDecoration:"none"}}>
                             <Button>Explore</Button>
+                            </Link>
                         </InfoContainer>
                     </Slide>    
                 ))}

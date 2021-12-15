@@ -9,7 +9,7 @@ import Products from '../components/Products'
 const HomePage = () => {
     return (
         <div>
-            <AnnouncementBar/>
+            {/* <AnnouncementBar/> */}
             <Navbar/>
             <HeroSlider />
             <Categories />

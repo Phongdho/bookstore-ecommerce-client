@@ -10,10 +10,13 @@ import {addProduct} from "../redux/cartRedux";
 import {useDispatch} from 'react-redux';
 
 
-const Container = styled.div``;
+const Container = styled.div`
+    height: 100%;
+    background: url(https://i.ibb.co/Z2YZD2M/Image-from-rawpixel-id-2541804-png.png);
+`;
 const Wrapper = styled.div`
     padding: 50px;
-    display: flex
+    display: flex;
 `;
 const ImgContainer = styled.div`
     flex: 1;
@@ -104,7 +107,7 @@ const Product = () => {
 
     return (
         <Container>
-            <AnnouncementBar/>
+            {/* <AnnouncementBar/> */}
             <Navbar/>
             <Wrapper>
                 <ImgContainer>
