@@ -1,6 +1,4 @@
-import { LocalSee } from '@material-ui/icons';
 import React, {useState, useEffect} from 'react'
-import { useLocation, useHistory } from "react-router-dom";
 import styled from 'styled-components'
 import AnnouncementBar from '../components/AnnouncementBar';
 import Footer from '../components/Footer';

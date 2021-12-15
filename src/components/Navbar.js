@@ -1,12 +1,13 @@
-import { Search, ShoppingCartOutlined } from '@material-ui/icons';
+import { ShoppingCartOutlined } from '@material-ui/icons';
 import React, {useState, useEffect} from 'react'
 import {FormControl, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { Badge } from '@material-ui/core';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import axios from "axios";
+import { resetUser } from '../redux/userRedux';
 
 const Container = styled.div`
     height: 60px;
@@ -21,17 +22,6 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
     flex: 1;    
-`;
-
-const SearchContainer = styled.div`
-    border: 0.5px solid lightgray;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-`;
-
-const Input = styled.input`
-    border: none;
 `;
 
 const Center = styled.div`
@@ -59,16 +49,18 @@ const MenuItem = styled.div`
 `
 
 const Navbar = () => {
+    const user = useSelector(state => state.user.currentUser);
     const [qTitle, setQTitle] = useState("");
     const [search, setSearch] = useState([]);
     const quantity = useSelector(state => state.cart.quantity);
     const history = useHistory();
+    const dispatch = useDispatch();
     const handleSearchChange = (e) => {
         setQTitle(e.target.value);
     }
 
     useEffect(() => {
-        console.log("it's me", search);
+        // console.log("it's me", search);
         localStorage.setItem("Search", JSON.stringify(search));
     }, [search])
 
@@ -77,6 +69,11 @@ const Navbar = () => {
         const res = await axios.get(qTitle && `http://localhost:5000/api/products?title=${qTitle}`);
         setSearch(res.data);
         history.push(`/search`);
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        dispatch(resetUser());
     }
 
     return (
@@ -99,19 +96,33 @@ const Navbar = () => {
                     <Link to="/" style={{textDecoration:"none"}}><Logo>domdom</Logo></Link>
                 </Center>
                 <Right>
-                    <Link to="/register" style={{textDecoration:"none", color: "black"}}>
-                    <MenuItem>REGISTER</MenuItem>
-                    </Link>
-                    <Link to="/login" style={{textDecoration:"none", color:"black"}}>
-                    <MenuItem>SIGN IN</MenuItem>
-                    </Link>
-                    <Link to="/cart" style={{textDecoration:"none", color:"black"}}>
-                    <MenuItem>
-                        <Badge badgeContent={quantity} color="primary">
-                        <ShoppingCartOutlined />
-                        </Badge>
-                    </MenuItem>
-                    </Link>
+                    { user ? (
+                        <>
+                           <Link to="/user" style={{textDecoration:"none", color: "black"}}>
+                                <MenuItem>Hi, {user.username}</MenuItem>
+                            </Link>
+                            <Link to="/cart" style={{textDecoration:"none", color:"black"}}>
+                                <MenuItem>
+                                    <Badge badgeContent={quantity} color="primary">
+                                    <ShoppingCartOutlined />
+                                    </Badge>
+                                </MenuItem>
+                            </Link>
+                            <Link to="" style={{textDecoration:"none", color: "black"}}>
+                                <MenuItem onClick={handleClick}>LOGOUT</MenuItem>
+                            </Link>
+                        </>
+                    )   :  (
+                        <>
+                            <Link to="/register" style={{textDecoration:"none", color: "black"}}>
+                                <MenuItem>REGISTER</MenuItem>
+                            </Link>
+                            <Link to="/login" style={{textDecoration:"none", color:"black"}}>
+                                <MenuItem>SIGN IN</MenuItem>
+                            </Link>
+                        </>
+                            )  
+                    }
                 </Right>
             </Wrapper>
         </Container>

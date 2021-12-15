@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { userRequest } from "../apiService";
 import {resetCart} from "../redux/cartRedux";
+import { Link } from 'react-router-dom';
 
 const Status = () => {
     const location = useLocation();
-    const data = location.state.stripeData;
-    const cart = location.state.products;
+    const data = location.state?.stripeData;
+    const cart = location.state?.products;
 
     const currentUser = useSelector((state) => state.user.currentUser);
-    const [orderId, setOrderId] = useState(null);
-
+    const [order, setOrder] = useState(null);
 
     // const token = currentUser.accessToken;
     const dispatch = useDispatch();
@@ -29,8 +29,8 @@ const Status = () => {
               amount: cart.total,
               address: data.billing_details.address,
             });
-            console.log("res", res);
-            setOrderId(res.data._id);
+            // console.log("res", res);
+            setOrder(res.data);
           } catch {}
         };
         data && createOrder();
@@ -47,10 +47,12 @@ const Status = () => {
                 justifyContent: "center",
             }}
             >
-        {orderId
-            ? `Order has been created successfully. Your order number is ${orderId}`
-            : `Successful. Your order is being prepared...`}
-        <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
+        {order?._id
+            ? `Order has been created successfully. Your order number is ${order?._id}`
+            : `Success! Your order has been received!`}
+        <Link to="/" style={{textDecoration:"none"}}>
+          <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
+        </Link>
         </div>
     );
 };

@@ -1,6 +1,5 @@
 import { loginFailure, loginStart, loginSuccess, registerSuccess } from "./userRedux"
-import { addProduct } from "./cartRedux"; 
-import {publicRequest, userRequest} from "../apiService";
+import {publicRequest} from "../apiService";
 
 export const register = async (dispatch, user) => {
     // dispatch(registerStart());

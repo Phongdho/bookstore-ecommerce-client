@@ -14,6 +14,7 @@ import CartPage from './pages/CartPage';
 import {useSelector} from "react-redux";
 import Status from './pages/Status';
 import { SearchPage } from './pages/SearchPage';
+import UserPage from './pages/UserPage';
 
 function App() {
 
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path="/search">
           <SearchPage/>
+        </Route>
+        <Route path="/user">
+          <UserPage/>
         </Route>
         <Route path="/login">{user ? <Redirect to="/" /> : <LoginPage />}</Route>
         <Route path="/cart">
