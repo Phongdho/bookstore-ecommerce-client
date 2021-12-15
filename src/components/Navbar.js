@@ -1,9 +1,12 @@
 import { Search, ShoppingCartOutlined } from '@material-ui/icons';
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import {FormControl, Button, Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { Badge } from '@material-ui/core';
 import {useSelector} from 'react-redux';
+import axios from "axios";
 
 const Container = styled.div`
     height: 60px;
@@ -56,17 +59,41 @@ const MenuItem = styled.div`
 `
 
 const Navbar = () => {
-
+    const [qTitle, setQTitle] = useState("");
+    const [search, setSearch] = useState([]);
     const quantity = useSelector(state => state.cart.quantity);
+    const history = useHistory();
+    const handleSearchChange = (e) => {
+        setQTitle(e.target.value);
+    }
+
+    useEffect(() => {
+        console.log("it's me", search);
+        localStorage.setItem("Search", JSON.stringify(search));
+    }, [search])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await axios.get(qTitle && `http://localhost:5000/api/products?title=${qTitle}`);
+        setSearch(res.data);
+        history.push(`/search`);
+    }
 
     return (
         <Container>
             <Wrapper>
                 <Left>
-                    <SearchContainer>
-                        <Search style={{fontSize: "16px", color: "gray"}}/>
-                        <Input/>
-                    </SearchContainer>
+                    <Form className="d-flex" onSubmit={handleSubmit}>
+                        <FormControl
+                        type="search"
+                        placeholder="Search"
+                        className="me-2"
+                        aria-label="Search"
+                        onChange={handleSearchChange}
+                        style={{backgroundColor:"lightgrey"}}
+                        />
+                        <Button onClick={handleSubmit} variant="outline-secondary">Search</Button>
+                    </Form>
                 </Left>
                 <Center>
                     <Link to="/" style={{textDecoration:"none"}}><Logo>domdom</Logo></Link>

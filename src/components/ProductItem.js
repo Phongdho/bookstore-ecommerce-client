@@ -62,13 +62,13 @@ const Icon = styled.div`
 const ProductItem = ({item}) => {
     return (
         <Container>
-            <Image src={item.img}/>
+            <Image src={item?.img}/>
             <Info>
                 <Icon>
                     <ShoppingCartOutlined/>
                 </Icon>
                 <Icon>
-                    <Link to={`/product/${item._id}`}>
+                    <Link to={`/product/${item?._id}`}>
                     <SearchOutlined/>
                     </Link>
                 </Icon>

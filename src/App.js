@@ -13,6 +13,7 @@ import {
 import CartPage from './pages/CartPage';
 import {useSelector} from "react-redux";
 import Status from './pages/Status';
+import { SearchPage } from './pages/SearchPage';
 
 function App() {
 
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route path="/success">
           <Status/>
+        </Route>
+        <Route path="/search">
+          <SearchPage/>
         </Route>
         <Route path="/login">{user ? <Redirect to="/" /> : <LoginPage />}</Route>
         <Route path="/cart">

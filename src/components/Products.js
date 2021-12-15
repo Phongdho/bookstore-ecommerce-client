@@ -20,6 +20,7 @@ const Products = ({cat, filters, sort}) => {
     const [products,setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
 
+    //Get all books data with or without a specific categories
     useEffect(()=> {
         const getProducts = async () => {
             try {
@@ -64,7 +65,7 @@ const Products = ({cat, filters, sort}) => {
 
     return (
         <div>
-        <Title>Newest Arrival</Title>
+        <Title>{!cat ? "Newest Arrival" : ""}</Title>
         <Container>
             {cat 
                 ? filteredProducts.map((item) => <ProductItem item = {item} key ={item.id}/>)
