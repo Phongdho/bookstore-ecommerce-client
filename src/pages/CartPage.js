@@ -1,11 +1,11 @@
-import { Add, Remove } from '@material-ui/icons'
+import { Add, DeleteOutlined, Remove } from '@material-ui/icons'
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import AnnouncementBar from '../components/AnnouncementBar'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import {useSelector, useDispatch} from 'react-redux';
-import {remQuant, addQuant} from "../redux/cartRedux";
+import {remQuant, addQuant, removeProduct} from "../redux/cartRedux";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../apiService";
 import { useHistory } from "react-router-dom";
@@ -156,6 +156,10 @@ const CartPage = () => {
         }
     };
 
+    const handleDelete = (product) => {
+        dispatch(removeProduct(product));
+    };
+
     return (
         <Container>
             <AnnouncementBar/>
@@ -187,6 +191,7 @@ const CartPage = () => {
                                     <Add style={{cursor:"pointer"}} onClick={() => handleQuantity('inc', product)}/>
                                 </ProductAmountContainer>
                                 <ProductPrice>USD {(product.price * product.quantity).toLocaleString()}</ProductPrice>
+                                <DeleteOutlined onClick={() => handleDelete(product)} style={{cursor: "pointer", marginTop: "10px"}}/>
                             </PriceDetail>
                             <Hr />
                         </Product>
