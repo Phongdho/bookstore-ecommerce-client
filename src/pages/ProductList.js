@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import { useLocation, useHistory } from "react-router-dom";
 import { useParams } from "react-router";
 import styled from 'styled-components'
-import AnnouncementBar from '../components/AnnouncementBar';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import Products from '../components/Products';
@@ -14,8 +13,8 @@ const Container = styled.div`
 const Title = styled.h1`
     margin: 20px;
     text-align: center;
-    font-weight: 300;
-    font-size: 40px;
+    font-weight: 500;
+    font-size: 44px;
 `;
 const FilterContainer = styled.div`
     display: flex;

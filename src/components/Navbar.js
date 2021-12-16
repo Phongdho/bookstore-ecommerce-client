@@ -1,6 +1,6 @@
-import { Search, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
+import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import React, {useState, useEffect} from 'react'
-import {FormControl, Button, Form } from "react-bootstrap";
+import {FormControl, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'

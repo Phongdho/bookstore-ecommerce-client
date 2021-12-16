@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRequest } from "../apiService";
-import AnnouncementBar from '../components/AnnouncementBar';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styled from 'styled-components';
 import { DataGrid } from "@material-ui/data-grid";
-import { deleteOrder, getOrder } from "../redux/apiFetch";
+import { deleteOrder} from "../redux/apiFetch";
 
 const Container = styled.div`
 `;

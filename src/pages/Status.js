@@ -46,13 +46,15 @@ const Status = () => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                background: "url(https://i.ibb.co/H22Cf8y/Image-from-rawpixel-id-2905726-jpeg.jpg)",
+                backgroundSize: "cover"
             }}
             >
         {order?._id
             ? `Order has been created successfully. Your order number is ${order?._id}`
             : `Success! Your order has been received!`}
         <Link to="/" style={{textDecoration:"none"}}>
-          <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
+          <button style={{ padding: 10, marginTop: 20, cursor: "pointer"}}>Go to Homepage</button>
         </Link>
         </div>
     );

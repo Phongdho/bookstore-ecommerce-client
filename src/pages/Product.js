@@ -1,7 +1,6 @@
-import { Add, Remove, Create } from '@material-ui/icons';
+import { Add, Remove} from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import AnnouncementBar from '../components/AnnouncementBar';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { useLocation } from 'react-router';
@@ -15,7 +14,7 @@ const Container = styled.div`
     background: url(https://i.ibb.co/Z2YZD2M/Image-from-rawpixel-id-2541804-png.png);
 `;
 const Wrapper = styled.div`
-    padding: 50px;
+    padding: 35px;
     display: flex;
 `;
 const ImgContainer = styled.div`
@@ -28,11 +27,12 @@ const Image = styled.img`
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 `;
 const InfoContainer = styled.div`
-    flex: 1;
+    flex: 2;
     padding: 0 50px;
 `;
 const Title= styled.h1`
     font-weight: 200;
+    font-size: 50px;
 `;
 const Desc = styled.p`
     margin: 20px 0px;
@@ -116,8 +116,8 @@ const Product = () => {
                 </ImgContainer>
                 <InfoContainer>
                     <Title>{product.title}</Title>
-                    <span><strong>Author: </strong>{product.author}</span>
-                    <Desc><strong>{product.highlight}</strong></Desc>
+                    <span style={{fontSize: "24px"}}><strong>Author: </strong>{product.author}</span>
+                    <Desc style={{display:"inline-flex"}}><strong>{product.highlight}</strong></Desc>
                     <Desc>{product.desc}</Desc>
                     <Price>USD {(product.price * 1).toLocaleString()}</Price>
                     {
@@ -129,7 +129,7 @@ const Product = () => {
                         </AmountContainer>
                         <Button onClick={handleClick}>ADD TO CART</Button>
                     </AddContainer>
-                    : "Temporarily Out Of Stock. Check back later!"
+                    : <div>"Temporarily Out Of Stock. Check back later!"</div>
                     }
                 </InfoContainer>
             </Wrapper>

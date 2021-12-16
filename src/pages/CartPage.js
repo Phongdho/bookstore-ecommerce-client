@@ -1,7 +1,6 @@
 import { Add, DeleteOutlined, Remove } from '@material-ui/icons'
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import AnnouncementBar from '../components/AnnouncementBar'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import {useSelector, useDispatch} from 'react-redux';

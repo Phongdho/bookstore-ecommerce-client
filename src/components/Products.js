@@ -14,7 +14,8 @@ const Container = styled.div`
 const Title = styled.h1`
     text-align: center;
     margin-top: 20px;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 44px;
 `;
 const Products = ({cat, filters, sort}) => {
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import AnnouncementBar from '../components/AnnouncementBar'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
 import HeroSlider from '../components/HeroSlider'

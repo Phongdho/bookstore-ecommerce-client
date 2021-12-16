@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import AnnouncementBar from '../components/AnnouncementBar';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import ProductItem from '../components/ProductItem'
