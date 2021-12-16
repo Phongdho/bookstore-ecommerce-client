@@ -58,6 +58,7 @@ const ProductDetail = styled.div`
 `
 const Image = styled.img`
     width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 `
 const Details = styled.div`
     padding: 20px;
@@ -151,7 +152,7 @@ const CartPage = () => {
     const handleQuantity = (type, product) => {
         if (type === 'desc') {
             product.quantity > 1 && dispatch(remQuant(product))
-        } else {
+        } else if (type === "inc" && product.quantity < product.stock){
             dispatch(addQuant(product))
         }
     };
@@ -169,7 +170,7 @@ const CartPage = () => {
                 <Top>
                     <TopButton>CONTINUE SHOPPING</TopButton>
                     <TopTexts>
-                        <TopText>Shopping bag (2)</TopText>
+                        <TopText>Shopping bag ({cart.quantity})</TopText>
                         <TopText>Your wishlist (0)</TopText>
                     </TopTexts>
                     <TopButton type="filled">CHECKOUT NOW</TopButton>

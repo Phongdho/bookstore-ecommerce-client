@@ -77,7 +77,7 @@ const Footer = () => {
         <Container>
             <Left>
                 <Logo>domdom</Logo>
-                <Desc>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</Desc>
+                <Desc>"domdom", aka "fireflies", sparks light, stimulates curiosity, and brightens up the night. We hope our passion for books and words will lighten up your reading journey. In words we trust. In domdom, you can trust you are shopping books at a place that truly cares about your reads.</Desc>
                 <MediaContainer>
                     <MediaIcon color="3B5999">
                         <Facebook/>

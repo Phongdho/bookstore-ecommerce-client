@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styled from 'styled-components';
 import { DataGrid } from "@material-ui/data-grid";
+import { deleteOrder, getOrder } from "../redux/apiFetch";
 
 const Container = styled.div`
 `;
@@ -21,9 +22,14 @@ const Title = styled.h1`
 const UserPage = () => {
 
     const currentUser = useSelector((state) => state.user.currentUser);
-    console.log(currentUser._id);
+    // console.log(currentUser._id);
+    // const order = useSelector(state => state.order.orders);
     const [order, setOrder] = useState([]);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //   getOrder(currentUser, dispatch)
+    // }, [dispatch]);
 
     useEffect(() => {
         const getOrders = async () => {
@@ -35,8 +41,13 @@ const UserPage = () => {
             }
         };
         getOrders();
-    }, []);
+    }, [currentUser]);
     console.log("all", order);
+
+    const handleDelete = (id) => {
+        deleteOrder(id, dispatch)
+    };
+
     const columns = [
         { field: "_id", headerName: "Order ID", width: 250 },
         {
@@ -63,8 +74,9 @@ const UserPage = () => {
             return (
               <>
                 <DeleteOutline
+                  style={{cursor: "pointer"}}
                   className="productListDelete"
-                //   onClick={() => handleDelete(params.row._id)}
+                  onClick={() => handleDelete(params.row._id)}
                 />
               </>
             );

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { userRequest } from "../apiService";
 import {resetCart} from "../redux/cartRedux";
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 const Status = () => {
     const location = useLocation();
@@ -19,17 +19,18 @@ const Status = () => {
     useEffect(() => {
         const createOrder = async () => {
           try {
-            const res = await userRequest.post("/orders", {
+            const res = await axios.post("http://localhost:5000/api/orders", {
               // token,
               userId: currentUser._id,
               products: cart.products.map((item) => ({
                 productId: item._id,
-                quantity: item._quantity,
+                quantity: item.quantity,
               })),
               amount: cart.total,
               address: data.billing_details.address,
-            });
-            // console.log("res", res);
+            }, {headers: {token: `Bearer ${currentUser?.accessToken}`}});
+
+            console.log("res", res);
             setOrder(res.data);
           } catch {}
         };

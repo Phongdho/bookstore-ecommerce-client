@@ -2,13 +2,15 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import { login } from '../redux/apiFetch';
 import {useDispatch, useSelector} from "react-redux";
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     background: linear-gradient(
         rgba(255,255,255,0.3), 
         rgba(255,255,255,0.3)
@@ -20,39 +22,45 @@ const Wrapper = styled.div`
     padding: 20px;
     width: 30%;
     background-color: #e8e8e4;
-    opacity: 0.8;
+    opacity: 0.9;
     border-radius: 20px;
 `;
 const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
 `;
 const Title = styled.h1`
+    text-align: center;
     font-weight: 300; 
 `;
 const Input = styled.input`
     flex: 1;
-    min-width: 40%;
+    width: 70%;
     margin: 20px 10px 0 0;
     padding: 10px;
 `;
 const Button = styled.button`
     border: none;
+    margin-top: 30px;
     width: 40%;
     padding: 15px 20px;
     background-color: #83c5be;
     cursor: pointer;
     &:disabled {
-        color: lightgray;
+        color: lightgrey;
         cursor: not-allowed;
     }
 `;
 
 const Error = styled.span`
+    margin-top: 30px;
     color: red;
 `
-const Link = styled.a``;
+const Linking = styled.a`
+    margin-top: 20px;
+`;
 
 const LoginPage = () => {
 
@@ -75,8 +83,10 @@ const LoginPage = () => {
                     <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
                     <Button onClick={handleClick} disabled={isFetching}>Log In</Button>
                     {error && <Error>Something went wrong</Error>}
-                    <Link>Forgot your password?</Link>
-                    <Link>Not have an account? Create one</Link>
+                    {/* <Link>Forgot your password?</Link> */}
+                    <Link to="/register" style={{textDecoration:"none"}}>
+                    <Linking>Not have an account? Create one</Linking>
+                    </Link>
                 </Form>
             </Wrapper>
         </Container>

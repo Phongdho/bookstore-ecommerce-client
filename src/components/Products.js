@@ -69,8 +69,8 @@ const Products = ({cat, filters, sort}) => {
         <Title>{!cat ? "Newest Arrival" : ""}</Title>
         <Container>
             {cat 
-                ? filteredProducts.map((item) => <ProductItem item = {item} key ={item.id}/>)
-                : products.slice(-8).map((item) => <ProductItem item = {item} key ={item.id}/>)}
+                ? filteredProducts.map((item, index) => <ProductItem item = {item} key ={index}/>)
+                : products.slice(-10).map((item, index) => <ProductItem item = {item} key ={index}/>)}
         </Container>
         </div>
     );

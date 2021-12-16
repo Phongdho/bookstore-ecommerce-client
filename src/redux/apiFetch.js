@@ -1,5 +1,6 @@
 import { loginFailure, loginStart, loginSuccess, registerSuccess } from "./userRedux"
-import {publicRequest} from "../apiService";
+import { deleteOrderRequest, deleteOrderSuccess, deleteOrderFailure, getOrderRequest, getOrderSuccess, getOrderFailure } from "./orderRedux";
+import {publicRequest, userRequest} from "../apiService";
 
 export const register = async (dispatch, user) => {
     // dispatch(registerStart());
@@ -18,6 +19,26 @@ export const login = async (dispatch, user) => {
         dispatch(loginSuccess(res.data));
     } catch (err) {
         dispatch(loginFailure())
+    }
+};
+
+export const getOrder = async (currentUser, dispatch) => {
+    dispatch(getOrderRequest());
+    try {
+        const res = await userRequest.get(`/orders/find/${currentUser._id}`);
+        dispatch(getOrderSuccess(res.data));
+    } catch (err) {
+        dispatch(getOrderFailure())
+    }
+};
+
+export const deleteOrder = async ( id, dispatch) => {
+    dispatch(deleteOrderRequest());
+    try {
+        const res = await userRequest.delete(`/orders/${id}`);
+        dispatch(deleteOrderSuccess());
+    } catch (err) {
+        dispatch(deleteOrderFailure())
     }
 };
 
