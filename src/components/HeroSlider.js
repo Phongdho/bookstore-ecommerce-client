@@ -81,6 +81,11 @@ const Button = styled.button`
     background-color: transparent;
     cursor: pointer;
     border-radius: 5px;
+    &:hover {
+        background-color: #aed9e0;
+        color: #fffffc;
+        border: 2px solid lightgray;
+    }
 `;
 
 const HeroSlider = () => {

@@ -70,7 +70,8 @@ const Button = styled.button`
     font-weight: 500;
 
     &:hover {
-        background-color: lightsteelblue;
+        background-color: #aed9e0;
+        color: #fffffc;
     }
 `;
 

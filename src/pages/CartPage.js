@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {remQuant, addQuant, removeProduct} from "../redux/cartRedux";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../apiService";
+import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 
 const KEY = process.env.REACT_APP_STRIPE;
@@ -167,12 +168,25 @@ const CartPage = () => {
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>
+                    <Link to="/products/literature">
                     <TopButton>CONTINUE SHOPPING</TopButton>
+                    </Link>
                     <TopTexts>
                         <TopText>Shopping bag ({cart.quantity})</TopText>
-                        <TopText>Your wishlist (0)</TopText>
+                        {/* <TopText>Your wishlist (0)</TopText> */}
                     </TopTexts>
+                    <StripeCheckout
+                            name="domdom's bookstore"
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxbaavdT8XbfZqUycEtXo2wDRF4J6l8Arytw&usqp=CAU"
+                            billingAddress
+                            shippingAddress
+                            description={`Your total is USD ${(cart.total * 0.90).toLocaleString()}`}
+                            amount={cart.total * 100 * 0.9}
+                            token={onToken}
+                            stripeKey={KEY}
+                            >
                     <TopButton type="filled">CHECKOUT NOW</TopButton>
+                    </StripeCheckout>
                 </Top>
                 <Bottom>
                     <Info>
