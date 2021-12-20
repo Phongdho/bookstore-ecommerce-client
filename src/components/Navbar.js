@@ -27,7 +27,8 @@ const Wrapper = styled.div`
 const Left = styled.div`
     flex: 1;
     display: flex;
-    align-items: center;    
+    align-items: center;
+    ${mobile({width: "50px"})}  
 `;
 
 const SearchContainer = styled.div`
@@ -43,10 +44,10 @@ const Center = styled.div`
 `;
 
 const Logo = styled.h1`
-    font-weight: bold;
+    font-weight: 600;
     text-align: center;
     color: black;
-    ${mobile({ fontSize: "24px" })}
+    ${mobile({ fontSize: "14px" })}
 `
 
 const Right = styled.div`

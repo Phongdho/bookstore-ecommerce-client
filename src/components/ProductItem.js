@@ -28,7 +28,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(240, 237, 235);
+    background-color: #f8f8ff;;
     border-radius: 10px;
     position: relative;
 

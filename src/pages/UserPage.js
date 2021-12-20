@@ -48,16 +48,16 @@ const UserPage = () => {
     };
 
     const columns = [
-        { field: "_id", headerName: "Order ID", width: 250 },
+        { field: "_id", headerName: "Order ID", width: 350 },
         {
           field: "amount",
           headerName: "Order Amount $",
-          width: 250,
+          width: 300,
         },
         {
           field: "status",
           headerName: "Order Status",
-          width: 250,
+          width: 300,
         },
         {
             field: `createdAt`,
@@ -88,7 +88,7 @@ const UserPage = () => {
             {/* <AnnouncementBar/> */}
             <Navbar/>
             <Title>{currentUser?.username}'s Order</Title>
-            <div style={{height: "50vh"}}>
+            <div style={{height: "50vh", width: "100vw"}}>
             <DataGrid
                 rows={order}
                 disableSelectionOnClick

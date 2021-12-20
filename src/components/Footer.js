@@ -4,7 +4,8 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display: flex;
-    background-color: #f8f9fa;
+    // background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+    background-color: #f8edeb;
 `;
 
 const Left = styled.div`

@@ -117,10 +117,10 @@ const Product = () => {
                 </ImgContainer>
                 <InfoContainer>
                     <Title>{product.title}</Title>
-                    <span style={{fontSize: "24px"}}><strong>Author: </strong>{product.author}</span>
-                    <Desc style={{display:"inline-flex"}}><strong>{product.highlight}</strong></Desc>
-                    <Desc>{product.desc}</Desc>
-                    <Price>USD {(product.price * 1).toLocaleString()}</Price>
+                    <span style={{fontSize: "24px"}}>Author: {product?.author}</span>
+                    <Desc style={{display:"inline-flex"}}><strong>{product?.highlight}</strong></Desc>
+                    <Desc>{product?.desc}</Desc>
+                    <Price>USD {(product?.price * 1).toLocaleString()}</Price>
                     {
                         product?.stock >= 1 ? <AddContainer>
                         <AmountContainer>

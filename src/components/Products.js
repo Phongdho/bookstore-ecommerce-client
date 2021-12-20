@@ -8,7 +8,7 @@ const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #fbfefb;
+    background-color: #fdfdff;
 `;
 
 const Title = styled.h1`
@@ -66,7 +66,7 @@ const Products = ({cat, filters, sort}) => {
       }, [sort]);
 
     return (
-        <div>
+        <div style={{backgroundColor: "#fdfdff"}}>
         <Title>{!cat ? "Newest Arrival" : ""}</Title>
         <Container>
             {cat 

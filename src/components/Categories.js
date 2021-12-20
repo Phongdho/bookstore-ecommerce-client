@@ -7,7 +7,8 @@ const Container = styled.div`
     display: flex;
     padding: 20px;
     justify-content: space-between;
-    background-color: #f8edeb;
+    background-color: #f8f8ff;
+    // background-image: linear-gradient(-200deg, #E3FDF5 0%, #FFE6FA 100%);
 `;
 const Categories = () => {
     return  <Container>
