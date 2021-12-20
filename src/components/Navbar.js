@@ -82,7 +82,7 @@ const Navbar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.get(qTitle && `http://localhost:5000/api/products?title=${qTitle}`);
+        const res = await axios.get(qTitle && `https://domdom-bookstore.herokuapp.com/api/products?title=${qTitle}`);
         setSearch(res.data);
         history.push(`/search`);
     }

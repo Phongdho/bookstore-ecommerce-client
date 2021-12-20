@@ -19,7 +19,7 @@ const Status = () => {
     useEffect(() => {
         const createOrder = async () => {
           try {
-            const res = await axios.post("http://localhost:5000/api/orders", {
+            const res = await axios.post("https://domdom-bookstore.herokuapp.com/api/orders", {
               // token,
               userId: currentUser._id,
               products: cart.products.map((item) => ({
