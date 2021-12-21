@@ -15,6 +15,9 @@ const KEY = process.env.REACT_APP_STRIPE;
 const Container = styled.div``;
 const Wrapper= styled.div`
     padding: 20px;
+    background: url(https://i.ibb.co/vkt0hmh/Image-from-rawpixel-id-2539430-png.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 `;
 const Title= styled.h1`
     font-weight: 300;
@@ -91,9 +94,9 @@ const ProductPrice = styled.div`
     font-weight: 200;
 `
 const Hr = styled.hr`
-    background-color: lightgray;
+    background-color: black;
     border: none;
-    height: 1px;
+    height: 2px;
 `
 const Summary = styled.div`
     flex: 1;
